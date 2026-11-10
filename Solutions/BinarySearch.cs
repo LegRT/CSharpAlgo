@@ -1,25 +1,25 @@
 public class Solution {
-    public int Search(int[] nums, int target)
+    public bool IsPalindrome(string s)
     {
         int left = 0;
-        int right = nums.Length - 1;
-        if (nums.Length == 1)
+        int right = s.Length - 1;
+        while (left < right)
         {
-            return nums[0] ==  target ? 0 : -1;
-        }
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) return mid;
-            if (nums[mid] > target)
+            if (!char.IsAsciiLetter(s[left]) && !char.IsAsciiDigit(s[left]))
             {
-                right = mid - 1;
+                left++;
+                continue;
             }
-            else
+            if (!char.IsAsciiLetter(s[right]) && !char.IsAsciiDigit(s[right]))
             {
-                left = mid + 1;
+                right--;
+                continue;
             }
+
+            if (char.ToLower(s[left]) != char.ToLower(s[right])) return false;
+            left++;
+            right--;
         }
-        return -1;
+        return true;
     }
 }
